@@ -1,12 +1,9 @@
 -- Put together by liv3dn8as, Created April 2017
 -- Needed Modules: enduser_setup, file, GPIO, net, node, timer, UART, WiFi
---wifi.setmode(wifi.STATION)
---wifi.sta.config("")
---wifi.sta.sethostname("")
---print(wifi.sta.getip())
 
 led2 = 4 -- GPIO2 on ESP-01
 gpio.mode(led2, gpio.OUTPUT)
+hname="myESP8266-3"
 
 enduser_setup.stop()
 
