@@ -21,7 +21,7 @@ srv:listen(80,function(conn)
          end
       end
    
-      buf = buf.."<h1>"..wifi.sta.gethostname().."'s Web Server</h1><form src=\"/\">Turn GPIO2 <select name=\"pin\" onchange=\"form.submit()\">"
+      buf = buf.."<center><h1>"..wifi.sta.gethostname().."'s Web Server</h1><form src=\"/\">Turn GPIO2 <select name=\"pin\" onchange=\"form.submit()\">"
       local _on,_off = "",""
       if(_GET.pin == "ON")then
          _on = " selected=true"
@@ -30,7 +30,7 @@ srv:listen(80,function(conn)
          _off = " selected=\"true\""
          gpio.write(led2, gpio.LOW)
       end
-         buf = buf.."<option".._on..">ON</opton><option".._off..">OFF</option></select></form>"
+         buf = buf.."<option".._on..">ON</opton><option".._off..">OFF</option></select></form></center>"
       client:send(buf);
       collectgarbage();
    end)
