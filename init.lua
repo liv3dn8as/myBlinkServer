@@ -1,7 +1,14 @@
 -- Put together by liv3dn8as, Created April 2017
 -- Needed Modules: enduser_setup, file, GPIO, net, node, timer, UART, WiFi
 
+hname="myESP8266-3"
+myssid=hname.."-AP"
+myauth=wifi.OPEN
+
+wifi.setmode(wifi.STATIONAP)
+wifi.ap.config({ssid=myssid, auth=myauth})
 -- Attempt to use enduser_setup instead of hardcoding in credentials
+enduser_setup.manual(true)
 enduser_setup.start(
    function()
       print("Connected to wifi as:" .. wifi.sta.getip())
@@ -11,3 +18,6 @@ enduser_setup.start(
    end,
    print -- Lua print function can server as the debug callback
 );
+
+-- Call http.lua file
+--dofile("http.lua")
