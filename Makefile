@@ -7,7 +7,7 @@ NODEMCU-UPLOADER=../nodemcu-uploader/nodemcu-uploader.py
 PORT=/dev/ttyUSB0
 SPEED=115200
 # Declare ESP/NodeMCU hostname
-HNAME ?= $(shell read -p 
+HNAME ?= $(shell read -p wifi.sta.sethostname)
 
 NODEMCU-COMMAND=$(NODEMCU-UPLOADER) -b $(SPEED) --start_baud $(SPEED) -p $(PORT) upload --restart
 
@@ -17,6 +17,7 @@ NODEMCU-COMMAND=$(NODEMCU-UPLOADER) -b $(SPEED) --start_baud $(SPEED) -p $(PORT)
 HTTP_FILES := $(wildcard http/*)
 LUA_FILES := \
    init.lua \
+   http.lua \
 
 # Print usage
 usage:
