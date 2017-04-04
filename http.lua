@@ -8,8 +8,11 @@
 led2 = 4 -- GPIO2 on ESP-01
 gpio.mode(led2, gpio.OUTPUT)
 
---srv=net.createServer(net.TCP)
---srv:listen(80,function(conn)
+enduser_setup.stop()
+
+srv=net.createServer(net.TCP)
+srv:listen(80,function(conn)
+--net.server:listen(80,function(conn)
    conn:on("receive", function(client,request)
       local buf = "";
       local _, _, method, path, vars = string.find(request, "([A-Z]+) (.+)?(.+)HTTP");
@@ -23,7 +26,7 @@ gpio.mode(led2, gpio.OUTPUT)
          end
       end
    
-      buf = buf.."<center><h1>"..wifi.sta.gethostname().."'s Web Server</h1><form src=\"/\">Turn GPIO2 <select name=\"pin\" onchange=\"form.submit()\">"
+      buf = buf.."<h1>"..wifi.sta.gethostname().."'s Web Server</h1><form src=\"/\">Turn GPIO2 <select name=\"pin\" onchange=\"form.submit()\">"
       local _on,_off = "",""
       if(_GET.pin == "ON")then
          _on = " selected=true"
@@ -32,9 +35,9 @@ gpio.mode(led2, gpio.OUTPUT)
          _off = " selected=\"true\""
          gpio.write(led2, gpio.LOW)
       end
-         buf = buf.."<option".._on..">ON</opton><option".._off..">OFF</option></select></form></center>"
+         buf = buf.."<option".._on..">ON</opton><option".._off..">OFF</option></select></form>"
       client:send(buf);
       collectgarbage();
    end)
    conn:on("sent", function (c) c:close() end)
---end)
+end)
