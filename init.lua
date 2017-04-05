@@ -1,9 +1,10 @@
 -- Put together by liv3dn8as, Created April 2017
 -- Needed Modules: enduser_setup, file, GPIO, net, node, timer, UART, WiFi
 
-hname="myESP8266-3"
-myssid=hname.."-AP"
-myauth=wifi.OPEN
+-- Define some variables
+hname="myESP8266-3" -- Set hostname
+myssid=hname.."-AP" -- Set SSID
+myauth=wifi.OPEN -- set authentication mode
 
 wifi.setmode(wifi.STATIONAP)
 wifi.ap.config({ssid=myssid, auth=myauth})
