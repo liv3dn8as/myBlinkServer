@@ -1,7 +1,7 @@
 -- Put together by liv3dn8as, Created April 2017
 -- Needed Modules: file, GPIO, net, node, timer, UART, WiFi
 wifi.setmode(wifi.STATION)
-wifi.sta.config("ourHouse - Main","thisisONLYatest")
+wifi.sta.config("SSID","PWD")
 wifi.sta.sethostname("myESP8266")
 print(wifi.sta.getip())
 led2 = 4 -- GPIO2 on ESP-01
